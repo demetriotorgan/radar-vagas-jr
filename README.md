@@ -1,9 +1,10 @@
 Radar de Vagas Jr - Londrina / Maringá
 
 Coleta inteligente de vagas da Gupy, com score de compatibilidade com meu CV e alerta anti-spam no Telegram.
-[![Python](https://img.shields.io/badge/Python-3.11-blue)]()
-[![DuckDB](https://img.shields.io/badge/DB-DuckDB-yellow)]()
-[![Status](https://img.shields.io/badge/Status-Dia%2008%2F11-green)]()
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![DuckDB](https://img.shields.io/badge/DB-DuckDB-yellow)
+![Status](https://img.shields.io/badge/Status-Dia%2008%2F11-green)
 
 ### 1. O Problema
 A aplicação Radar de Vagas Jr surgiu de uma necessidade especial de conhecer e aprender sobre as necessidades que as empresas de tecnologia da região de Maringá/Londrina possuem. Os dados estão espalhadas na Gupy, com títulos diferentes (`Jr`, `Estágio`, `Trainee`) e 90% não são pra Londrina/Maringá ou são spam de vaga repetida no Telegram. 
