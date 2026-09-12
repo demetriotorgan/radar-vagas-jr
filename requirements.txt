@@ -2,3 +2,5 @@ requests
 pandas
 duckdb
 scikit-learn
+matplotlib
+python-dotenv
