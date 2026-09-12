@@ -1,0 +1,10 @@
+Sou Analista de Dados Junior em transição de carreira, com foco em Python, APIs, modelagem relacional e visualização de dados.
+
+Experiência prática com projetos próprios de automação, ETL, limpeza de dados, análise exploratória e criação de dashboards com DuckDB, SQL, PostgreSQL, Pandas e Streamlit.
+
+Busco primeira oportunidade profissional como Analista de Dados Junior, Jr, Junior, Estágio, Trainee, Entry Level, Assistente de Dados.
+
+Interesse em vagas de Analista de Dados, Analista de Dados JR, Analytics, Business Intelligence, BI, Remoto, Maringá, Londrina, Maringa.
+
+Ferramentas: Python, DuckDB, SQL, PostgreSQL, Pandas, Requests, Plotly, Streamlit, Git, GitHub.
+Projetos: Radar de Vagas Gupy com coleta via API, filtro e histórico em DuckDB.
