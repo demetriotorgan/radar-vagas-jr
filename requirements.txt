@@ -4,3 +4,4 @@ duckdb
 scikit-learn
 matplotlib
 python-dotenv
+streamlit
