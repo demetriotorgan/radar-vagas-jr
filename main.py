@@ -2,6 +2,7 @@ import os, re, time, requests, pandas as pd, duckdb
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 DB = "vagas.duckdb"
@@ -100,15 +101,17 @@ def main():
 
     df_save = df_f[['id','empresa','empresa_norm','careerPageUrl','careerPageUrl_norm','titulo','cidade','remoto','tipo','data','link','descricao','score_final']].rename(columns={'score_final':'score'})
 
+    con.register('df_save_temp', df_save)
     con.execute("""
-    INSERT INTO vagas BY NAME SELECT * FROM df_save
+    INSERT INTO vagas BY NAME SELECT * FROM df_save_temp
     ON CONFLICT (id) DO UPDATE SET score = EXCLUDED.score, link = EXCLUDED.link, empresa_norm = EXCLUDED.empresa_norm
     """)
+    
     con.execute("UPDATE vagas SET data_coleta = CURRENT_TIMESTAMP WHERE data_coleta IS NULL")
     print(f"Banco com: {con.execute('SELECT COUNT(*) FROM vagas').fetchone()[0]} vagas")
 
     # DIA 04 - ANTI-SPAM
-    df_novas = con.execute("SELECT * FROM vagas WHERE id NOT IN (SELECT id FROM vagas_enviadas) AND score >= 35 ORDER BY score DESC").df()
+    df_novas = con.execute("SELECT * FROM vagas WHERE id NOT IN (SELECT id FROM vagas_enviadas) AND score >= 50 ORDER BY score DESC").df()
     print(f"Novas pra enviar: {len(df_novas)}")
 
     TOKEN = os.getenv('TELEGRAM_TOKEN')
@@ -123,13 +126,13 @@ def main():
         msg = f"🔥 Score {v['score']}% - {v['titulo']}\n\n🏢 {v['empresa_norm']} | 📍 {v['cidade']}\n🔗 {v['link']}"
         r = requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", json={"chat_id": CHAT_ID, "text": msg})
         if r.status_code == 200:
-            con.execute(f"INSERT OR IGNORE INTO vagas_enviadas VALUES ('{v['id']}')")
+            con.execute("INSERT OR IGNORE INTO vagas_enviadas VALUES (?)", [v['id']])
             print(f"✅ Enviado: {v['titulo'][:50]}")
         else:
             print(f"❌ Erro Telegram: {r.text}")
 
     con.close()
-    print("Dia 08 CONCLUÍDO!")
+    print(f"Dia {datetime.now().strftime('%d/%m')} CONCLUÍDO!")
 
 if __name__ == "__main__":
     main()
