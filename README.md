@@ -21,6 +21,11 @@ A ideia foi criar um Bot que coleta 5 termos de busca, filtra por cidade/remoto,
 - **Dashboard:** Streamlit
 - Automatizar com GitHub Actions rodando 8h/8h
 
+- 🔗 Dashboard: https://radar-vagas-jr.streamlit.app
+Pipeline diário 08h com GitHub Actions
+Banco acumulado DuckDB + deduplicação por empresa_norm
+Score de aderência com meu CV
+
 ### 4. Insights possíveis que a aplicação fornece:
 - **Top Empresa:** Melhores empresas que oferecem vagas do tipo Jr, Estágio e Trainee
 - **Banco De Vagas:** Banco de vagas para diversos tipo de análise
