@@ -48,4 +48,11 @@ cols_show = [c for c in ['titulo','empresa_norm','empresa','cidade','score','lin
 st.dataframe(df_f[cols_show], use_container_width=True, column_config={"link": st.column_config.LinkColumn("Link")})
 
 st.divider()
-st.bar_chart(df_f['cidade'].value_counts())
+st.subheader("📊 Distribuição por cidade (geral)")
+# Usa o total, não o filtrado, pra não virar retangulão
+city_counts = df['cidade'].value_counts()
+st.bar_chart(city_counts)
+
+if len(df_f) > 0 and 'empresa_norm' in df_f.columns:
+    st.subheader("🏢 Top empresas no filtro atual")
+    st.bar_chart(df_f['empresa_norm'].value_counts().head(8))
